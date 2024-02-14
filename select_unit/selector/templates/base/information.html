@@ -1,0 +1,14 @@
+{% block content %}
+{{student.full_name}}
+{{student.age}}
+{{student.gender}}
+{{student.birth_date}}
+{{student.student_number}}
+{{student.card_number}}
+{{student.phone_number}}
+{% for i in student.lessone.all %}
+{{i}}
+{% empty %}
+{{You have no units!}}
+{% endfor %}
+{% endblock content %}
