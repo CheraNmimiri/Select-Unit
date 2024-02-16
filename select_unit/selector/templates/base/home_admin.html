@@ -1,0 +1,8 @@
+{% extends "base/main/main.html" %}
+{% block content %}
+
+{% for lessone in lessones %}
+<a href="{% url 'information' lessone.id %}">{{ lessone }}</a>
+{% endfor %}
+
+{% endblock content %}

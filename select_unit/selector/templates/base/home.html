@@ -1,8 +1,14 @@
-{% extends "base/main/main.html" %}
 {% block content %}
-
-{% for i in students %}
-<a href="{% url 'information' i.id %}">{{ i }}</a>
-{% endfor %}
-
+<button id="register" onclick="register()">Register</button>
+<button id="login" onclick="login()">Login</button>
+<button><a href="http://www.example.com/page2">Go To Page 2</a></button>
 {% endblock content %}
+
+<script>
+function register(){
+    return window.location.replace("{% url 'register' %}")
+}
+function login(){
+    return window.location.replace("{% url 'login' %}")
+}
+</script>

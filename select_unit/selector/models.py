@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
-from django_jalali.db import models as jmodels
 import uuid
 
 
@@ -12,7 +11,6 @@ class Lessone(models.Model):
         ("med", "Medical"),
 
     ]
-
     DAYS = [
         ("SAT", "Saturday"),
         ("SUN", "Sunday"),
@@ -33,6 +31,12 @@ class Lessone(models.Model):
 
 
 class Student(models.Model):
+    
+    ROLE = [
+        ("admin", "Admin"),
+        ("student", "Student"),
+    ]
+    
     GENDER = [
         ("M", "Man"),
         ("W", "Woman"),
@@ -41,17 +45,19 @@ class Student(models.Model):
 
     id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-
+    USERNAME_FIELD = 'id'
     full_name = models.CharField(max_length=250)
     age = models.IntegerField(null=False, blank=False)
     gender = models.CharField(choices=GENDER, max_length=100)
-    birth_date = jmodels.jDateField()
-    student_number = models.CharField(max_length=20, validators=[RegexValidator(r'^\d+$')])
-    card_number = models.CharField(max_length=20, validators=[RegexValidator(r'^\d+$')])
+    birth_date = models.DateField()
+    id_number = models.CharField(max_length=20, validators=[RegexValidator(r'^\d+$')])
     phone_number = models.CharField(max_length=11, validators=[RegexValidator(r'^\d{11}$')])
+    student_number = models.CharField(max_length=20, validators=[RegexValidator(r'^\d+$')])
+    password = models.CharField(null=False, blank=False,max_length=100)
     lessone = models.ManyToManyField("Lessone")
-
-
+    is_superuser = models.BooleanField(default=False, null=False, blank= False)    
+    
+    
     def __str__(self):
         return self.full_name
 
