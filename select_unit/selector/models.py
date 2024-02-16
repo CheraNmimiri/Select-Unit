@@ -4,7 +4,7 @@ from django.core.validators import RegexValidator
 import uuid
 
 
-class Lessone(models.Model):
+class Lesson(models.Model):
     FIELD = [
         ("eng", "engineering"),
         ("hum", "Humanities"),
@@ -54,10 +54,9 @@ class Student(models.Model):
     phone_number = models.CharField(max_length=11, validators=[RegexValidator(r'^\d{11}$')])
     student_number = models.CharField(max_length=20, validators=[RegexValidator(r'^\d+$')])
     password = models.CharField(null=False, blank=False,max_length=100)
-    lessone = models.ManyToManyField("Lessone")
+    lesson = models.ManyToManyField("Lesson")
     is_superuser = models.BooleanField(default=False, null=False, blank= False)    
-    
-    
+
     def __str__(self):
         return self.full_name
 

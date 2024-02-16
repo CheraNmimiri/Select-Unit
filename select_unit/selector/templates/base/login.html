@@ -5,5 +5,11 @@
 {{form.as_p}}
 <button type="submit">Login</button>
 </form>
-
+<button onclick="Back()">Back</button>
 {% endblock content %}
+
+<script>
+    function Back(){
+        return window.location.replace("{% url "home" %}")
+    }
+</script>

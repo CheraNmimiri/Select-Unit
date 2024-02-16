@@ -56,34 +56,34 @@ class Login(LoginView):
         return reverse_lazy("home")
 
 
-class LessoneList(ListView):
-    model = Lessone
-    context_object_name = "lessones"
+class LessonList(ListView):
+    model = Lesson
+    context_object_name = "lesson"
     template_name = "base/home_admin.html"
 
 
-class LessoneDetail(DetailView):
-    model = Lessone
-    context_object_name = "lesoone"
-    template_name = "lessone_detail.html"
+class LessonDetail(DetailView):
+    model = Lesson
+    context_object_name = "lesson"
+    template_name = "lesson_detail.html"
 
 
 class AddLessone_Admin(CreateView):
-    model = Lessone
-    template_name = "base/add_lessone.html"
+    model = Lesson
+    template_name = "base/add_lesson.html"
     fields = "__all__"
-    success_url = reverse_lazy("lessone-list") # elat estefade nakardan az reverse() ine ke in fun object mifreste va reverse ye str.
+    success_url = reverse_lazy("lesson-list") # elat estefade nakardan az reverse() ine ke in fun object mifreste va reverse ye str.
 
 
-class UpdateLessone(UpdateView):
-    model = Lessone
-    template_nmae = "base/edit_lessone.html"
+class UpdateLesson(UpdateView):
+    model = Lesson
+    template_name = "base/edit_lesson.html"
     fields = "__all__"
-    success_url = reverse_lazy("lessone-list")
+    success_url = reverse_lazy("lesson-list")
     
 
-class DeleteLesoone(DeleteView):
-    model = Lessone
+class DeleteLesson(DeleteView):
+    model = Lesson
     fields = "__all__"
-    success_url = reverse_lazy("lessone-list")
-    template_name = "/base/delete_lessone.html"
+    success_url = reverse_lazy("lesson-list")
+    template_name = "/base/delete_lesson.html"
