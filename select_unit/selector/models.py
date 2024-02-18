@@ -6,21 +6,22 @@ import uuid
 
 class Lesson(models.Model):
     FIELD = [
-        ("eng", "engineering"),
-        ("hum", "Humanities"),
-        ("med", "Medical"),
+        ("مهندسی", "مهندسی"),
+        ("انسانی", "انسانی"),
+        ("پزشکی", "پزشکی"),
 
     ]
     DAYS = [
-        ("SAT", "Saturday"),
-        ("SUN", "Sunday"),
-        ("MON", "Monday"),
-        ("TUES", "Tuesday"),
-        ("WED", "Wednesday"),
-        ("THUR", "Thursday"),
-        ("FRI", "FRIDAY"),
+        ("شنبه", "شنبه"),
+        ("یک‌شنبه", "یک‌شنبه"),
+        ("دوشنبه", "دوشنبه"),
+        ("سه‌شنبه", "سه‌شنبه"),
+        ("چهارشنبه", "چهارشنبه"),
+        ("پنج‌شنبه", "پنج‌شنبه"),
+        ("جمعه", "جمعه"),
     ]
     name = models.CharField(max_length=250, null=False)
+    USERNAME_FIELD = 'name'
     unit = models.IntegerField(null=False)
     professor = models.CharField(null=False, max_length=250)
     College = models.CharField(max_length=50, choices=FIELD)

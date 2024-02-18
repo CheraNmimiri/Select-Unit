@@ -1,1 +1,15 @@
 {% extends "base/main/main.html" %}
+{% block title %}Lesson list{% endblock title %}
+{% block content %}
+    {% for lesson in lessons %}
+            {% if user.request. %}
+            <a href="{% url 'lesson-detail' lesson.id%}">{{lesson}}</a>
+    {% endfor %}
+    <button onclick="Back()">Back</button>
+
+    <script>
+    function Back(){
+        return window.location.replace("{% url "home" %}")
+    }
+</script>
+{% endblock content %}

@@ -1,23 +1,32 @@
+{% extends "base/main/main.html" %}
+{% block title %}Home{% endblock title %}
 {% block content %}
     {% if request.user.is_authenticated %}
     <h1>Hello {{ request.user|title }}</h1>
-    <button>Select Unit</button>
+<button onclick="lessons_list()">Show Lessons</button>
         <form method="Post" action="{% url "logout" %}">
         {% csrf_token %}
         <button>Logout</button>
         </form>
-
+        <script>
+function lessons_list(){
+    return window.location.replace("{% url "lessons-list" %}")
+}
+</script>
     {% else %}
     <button onclick="register()">Register</button>
 <button onclick="login()">Login</button>
-    {% endif %}
-{% endblock content %}
 
-<script>
+   <script>
 function register(){
     return window.location.replace("{% url 'register' %}")
 }
 function login(){
     return window.location.replace("{% url 'login' %}")
 }
+
+
 </script>
+    {% endif %}
+{% endblock content %}
+

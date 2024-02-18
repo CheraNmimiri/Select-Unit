@@ -4,6 +4,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
 
@@ -58,21 +59,25 @@ class Login(LoginView):
 
 class LessonList(ListView):
     model = Lesson
-    context_object_name = "lesson"
-    template_name = "base/home_admin.html"
+    context_object_name = "lessons"
+    template_name = "base/lesson_list.html"
 
 
 class LessonDetail(DetailView):
     model = Lesson
     context_object_name = "lesson"
-    template_name = "lesson_detail.html"
+    template_name = "base/lesson_detail.html"
 
 
-class AddLessone_Admin(CreateView):
+class AddLesson(CreateView):
     model = Lesson
-    template_name = "base/add_lesson.html"
     fields = "__all__"
-    success_url = reverse_lazy("lesson-list") # elat estefade nakardan az reverse() ine ke in fun object mifreste va reverse ye str.
+    template_name = "base/add_lesson.html"
+    success_url = reverse_lazy("lessons-list") # elat estefade nakardan az reverse() ine ke in fun object mifreste va reverse ye str.
+
+    # def form_valid(self, form):
+    #     form.instance.user = self.request.user
+    #     return super(AddLessonAdmin, self).form_valid(form)
 
 
 class UpdateLesson(UpdateView):
@@ -80,7 +85,7 @@ class UpdateLesson(UpdateView):
     template_name = "base/edit_lesson.html"
     fields = "__all__"
     success_url = reverse_lazy("lesson-list")
-    
+
 
 class DeleteLesson(DeleteView):
     model = Lesson

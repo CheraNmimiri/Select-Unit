@@ -1,0 +1,16 @@
+{% extends "base/main/main.html" %}
+{% block title %}Add lesson{% endblock title %}
+{% block content %}
+    <form action="" method="Post">
+    {% csrf_token %}
+        {{ form.as_p }}
+    <input value="Submit" type="submit">
+    </form>
+    <button onclick="Back()">Back</button>
+
+    <script>
+    function Back(){
+        return window.location.replace("{% url "home" %}")
+    }
+</script>
+{% endblock content %}

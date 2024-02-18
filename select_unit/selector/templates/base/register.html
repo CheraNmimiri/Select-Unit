@@ -1,3 +1,5 @@
+{% extends "base/main/main.html" %}
+{% block title %}Register{% endblock title %}
 {% block content %}
 
 <form action="" method="Post">
@@ -7,10 +9,10 @@
 </form>
 
 <button onclick="Back()">Back</button>
-{% endblock content %}
-
-<script>
+    <script>
     function Back(){
         return window.location.replace("{% url "home" %}")
     }
 </script>
+{% endblock content %}
+

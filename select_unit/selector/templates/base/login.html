@@ -1,15 +1,16 @@
+{% extends "base/main/main.html" %}
 {% block content %}
-
+{% block title %}Login{% endblock title %}
 <form action="" method="Post">
 {% csrf_token %}
 {{form.as_p}}
 <button type="submit">Login</button>
 </form>
 <button onclick="Back()">Back</button>
-{% endblock content %}
-
-<script>
+    <script>
     function Back(){
         return window.location.replace("{% url "home" %}")
     }
 </script>
+{% endblock content %}
+
